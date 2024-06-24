@@ -40,8 +40,6 @@ class BookService implements IBookService {
     }
 
     Long count() {
-        String sqlString;
-        Sql sql;
         Long countOfRecords;
 
         countOfRecords = Book.count();
