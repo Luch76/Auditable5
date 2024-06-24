@@ -4,7 +4,7 @@ import grails.gorm.services.Service
 import grails.gorm.transactions.Transactional
 import groovy.sql.Sql
 
-@Service(Book)
+
 interface IBookService {
 
     Book get(Serializable id)
@@ -19,10 +19,8 @@ interface IBookService {
 
 }
 
-
 @Transactional
-@Service(Book)
-abstract class BookService implements IBookService  {
+class BookService implements IBookService {
 
     Book get(Serializable id) {
         return Book.get(id);
