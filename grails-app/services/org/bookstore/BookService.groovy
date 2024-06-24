@@ -1,9 +1,11 @@
 package org.bookstore
 
 import grails.gorm.services.Service
+import grails.gorm.transactions.Transactional
+import groovy.sql.Sql
 
 @Service(Book)
-interface BookService {
+interface IBookService {
 
     Book get(Serializable id)
 
@@ -14,5 +16,44 @@ interface BookService {
     void delete(Serializable id)
 
     Book save(Book book)
+
+}
+
+
+@Transactional
+@Service(Book)
+abstract class BookService implements IBookService  {
+
+    Book get(Serializable id) {
+        return Book.get(id);
+    }
+
+    Book save(Book book) {
+        book = book.save();
+        return book;
+    }
+
+    List<Book> list(Map args) {
+        Book[] books = [];
+
+        books = Book.list();
+
+        return books;
+    }
+
+    Long count() {
+        String sqlString;
+        Sql sql;
+        Long countOfRecords;
+
+        countOfRecords = Book.count();
+
+        return countOfRecords;
+    }
+
+    void delete(Serializable id) {
+        Book book = this.get(id);
+        book.delete();
+    }
 
 }

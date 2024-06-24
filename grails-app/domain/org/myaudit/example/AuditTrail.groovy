@@ -50,6 +50,8 @@ class AuditTrail implements Serializable {
         propertyName(nullable: true)
         oldValue(nullable: true)
         newValue(nullable: true)
+        dateCreated(nullable: true)
+        lastUpdated(nullable: true)
     }
 
     static mapping = {
