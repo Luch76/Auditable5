@@ -8,6 +8,9 @@ buildscript {
         classpath "gradle.plugin.com.github.erdi.webdriver-binaries:webdriver-binaries-gradle-plugin:2.6"
         classpath "org.grails.plugins:hibernate5:7.3.0"
         classpath "com.bertramlabs.plugins:asset-pipeline-gradle:3.4.7"
+
+        // Luch
+        classpath 'org.grails.plugins:database-migration:4.2.1'
     }
 }
 
@@ -31,6 +34,15 @@ configurations {
     developmentOnly
     runtimeClasspath {
         extendsFrom developmentOnly
+    }
+}
+
+// Luch
+sourceSets {
+    main {
+        resources {
+            srcDir 'grails-app/migrations'
+        }
     }
 }
 
@@ -78,6 +90,8 @@ dependencies {
 
     // Luch
     implementation 'org.grails.plugins:audit-logging:4.0.3'
+    implementation 'org.grails.plugins:database-migration:4.2.1'
+    implementation 'org.liquibase:liquibase-core:4.19.0'
 }
 
 bootRun {
